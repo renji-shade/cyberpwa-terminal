@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - CyberPWA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            min-height: 100vh;
+            background: #0a0e27;
+            color: #00ff41;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .offline-container {
+            text-align: center;
+            padding: 40px;
+            border: 2px solid #00ff41;
+            border-radius: 8px;
+            background: #050810;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+            max-width: 400px;
+            margin: 20px;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #00ff41;
+        }
+        p {
+            margin-bottom: 20px;
+            color: #00ffaa;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: transparent;
+            border: 2px solid #00ff41;
+            color: #00ff41;
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #00ff41;
+            color: #050810;
+            box-shadow: 0 0 20px #00ff41;
+        }
+        .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="icon">🔌</div>
+        <h1>OFFLINE</h1>
+        <p>Brak połączenia z internetem.</p>
+        <p>Sprawdź swoje połączenie sieciowe i spróbuj ponownie.</p>
+        <a href="/" class="btn">SPRÓBUJ PONOWNIE</a>
+    </div>
+</body>
+</html>

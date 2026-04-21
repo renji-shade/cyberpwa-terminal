@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>CyberPWA | Terminal Application</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="CyberPWA">
+    <meta name="theme-color" content="#00ff41">
+    <meta name="description" content="Terminal application with registration, 3 anime APIs and PWA support">
+    <script src="https://kit.fontawesome.com/0bb3b4cf61.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="terminal-container">
+        <header class="terminal-header">
+            <div class="header-top">
+                <span class="terminal-dot green"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot red"></span>
+                <h1 class="terminal-title">CYBERPWA_TERMINAL v2.0</h1>
+            </div>
+            <div class="status-bar">
+                <span class="status-item"><i class="fa-solid fa-plug"></i> ONLINE</span>
+                <span class="status-item"><i class="fa-solid fa-shield-haltered"></i> ENCRYPTED</span>
+            </div>
+        </header>
+
+        <main class="terminal-main">
+            <!-- REGISTRATION SECTION -->
+            <section class="register-section">
+                <div class="section-header">
+                    <span class="prompt">$ register></span>
+                    <span class="section-title">NEW USER</span>
+                </div>
+
+                <form id="registerForm" class="register-form">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fa-solid fa-user-astronaut"></i> USERNAME
+                        </label>
+                        <input type="text" id="username" class="terminal-input" placeholder="min. 3 characters">
+                        <span class="error-message" id="usernameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fa-solid fa-envelope"></i> EMAIL
+                        </label>
+                        <input type="email" id="email" class="terminal-input" placeholder="user@example.com">
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fa-solid fa-key"></i> PASSWORD
+                        </label>
+                        <input type="password" id="password" class="terminal-input" placeholder="min. 8 characters">
+                        <span class="error-message" id="passwordError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fa-solid fa-repeat"></i> CONFIRM PASSWORD
+                        </label>
+                        <input type="password" id="confirmPassword" class="terminal-input">
+                        <span class="error-message" id="confirmError"></span>
+                    </div>
+
+                    <button type="submit" class="terminal-btn">
+                        <i class="fa-solid fa-terminal"></i> REGISTER
+                    </button>
+                </form>
+
+                <div id="registerResult" class="register-result"></div>
+            </section>
+
+            <!-- API 1: Anime Quotes -->
+            <section class="api-section animechan-section">
+                <div class="section-header">
+                    <span class="prompt">$ quotes></span>
+                    <span class="section-title">ANIME QUOTES</span>
+                </div>
+
+                <div class="anime-card">
+                    <div class="anime-icon">
+                        <i class="fa-solid fa-quote-right"></i>
+                    </div>
+                    <div class="anime-fact-container">
+                        <p id="animechanFact" class="anime-fact">Click button to load a quote...</p>
+                    </div>
+                    <div class="anime-source" id="animechanSource"></div>
+                </div>
+
+                <button id="refreshAnimechan" class="terminal-btn">
+                    <i class="fa-solid fa-rotate-right"></i> GET QUOTE
+                </button>
+            </section>
+
+            <!-- API 2: Anime Facts -->
+            <section class="api-section animefacts-section">
+                <div class="section-header">
+                    <span class="prompt">$ facts></span>
+                    <span class="section-title">ANIME FACTS</span>
+                </div>
+
+                <div class="anime-card">
+                    <div class="anime-icon">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <div class="anime-fact-container">
+                        <p id="animefactsFact" class="anime-fact">Click button to load a fact...</p>
+                    </div>
+                    <div class="anime-source" id="animefactsSource"></div>
+                </div>
+
+                <button id="refreshAnimefacts" class="terminal-btn">
+                    <i class="fa-solid fa-rotate-right"></i> GET FACT
+                </button>
+            </section>
+
+            <!-- API 3: Random Anime -->
+            <section class="api-section jikan-section">
+                <div class="section-header">
+                    <span class="prompt">$ anime></span>
+                    <span class="section-title">RANDOM ANIME</span>
+                </div>
+
+                <div class="anime-card">
+                    <div class="anime-icon">
+                        <i class="fa-solid fa-film"></i>
+                    </div>
+                    <div class="anime-fact-container">
+                        <p id="jikanFact" class="anime-fact">Click button to load anime info...</p>
+                    </div>
+                    <div class="anime-source" id="jikanSource"></div>
+                </div>
+
+                <button id="refreshJikan" class="terminal-btn">
+                    <i class="fa-regular fa-newspaper"></i> GET ANIME
+                </button>
+            </section>
+
+            <!-- USERS SECTION -->
+            <section class="users-section">
+                <div class="section-header">
+                    <span class="prompt">$ database></span>
+                    <span class="section-title">REGISTERED USERS</span>
+                </div>
+
+                <button id="loadUsers" class="terminal-btn small-btn">
+                    <i class="fa-solid fa-database"></i> LOAD LIST
+                </button>
+
+                <div id="usersList" class="users-list">
+                    <p class="info-text">No data. Click button to load.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="terminal-footer">
+            <p>> merito 2026 | cyberpwa_terminal | 3 Anime APIs | <span id="year"></span></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(reg => console.log('Service Worker registered', reg))
+                .catch(err => console.log('Service Worker error:', err));
+        }
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
