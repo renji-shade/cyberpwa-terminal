@@ -50,16 +50,16 @@ function serveStaticFile(res, filepath, contentType) {
     });
 }
 
-// Proxy function to fetch external APIs (bypass CORS)
 async function proxyFetch(targetUrl, res) {
     try {
         const controller = new AbortController();
-        // Zwiększ timeout dla Jikan API (czasami wolniejsze)
-        const timeoutId = setTimeout(() => controller.abort(), 10000);
+        const timeoutId = setTimeout(() => controller.abort(), 8000);
         
         const response = await fetch(targetUrl, { 
             signal: controller.signal,
-            headers: { 'User-Agent': 'CyberPWA/1.0' } // Dodaj User-Agent
+            headers: {
+                'User-Agent': 'CyberPWA-App/1.0 (Contact: admin@cyberpwa.com)'
+            }
         });
         clearTimeout(timeoutId);
         
