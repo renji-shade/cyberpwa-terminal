@@ -2,7 +2,6 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 const path = require('path');
-const fetch = require('node-fetch');
 
 // In-memory user database
 let users = [];
@@ -50,17 +49,13 @@ function serveStaticFile(res, filepath, contentType) {
     });
 }
 
+// Proxy function to fetch external APIs (bypass CORS)
 async function proxyFetch(targetUrl, res) {
     try {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 8000);
         
-        const response = await fetch(targetUrl, { 
-            signal: controller.signal,
-            headers: {
-                'User-Agent': 'CyberPWA-App/1.0 (Contact: admin@cyberpwa.com)'
-            }
-        });
+        const response = await fetch(targetUrl, { signal: controller.signal });
         clearTimeout(timeoutId);
         
         if (!response.ok) {
@@ -93,9 +88,9 @@ async function handleRequest(req, res) {
     }
     
     // PROXY ENDPOINTS - bypass CORS for anime APIs
-    // Proxy for Anime Quotes - NOWY ENDPOINT
+    // Proxy for Anime Quotes
     if (pathname === '/api/proxy/quote' && method === 'GET') {
-        await proxyFetch('https://animechan.vercel.app/api/random', res);
+        await proxyFetch('https://animechan.xyz/api/random', res);
         return;
     }
     
