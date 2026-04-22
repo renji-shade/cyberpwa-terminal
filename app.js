@@ -3,11 +3,19 @@ const quoteText = document.getElementById('animechanFact');
 const quoteSource = document.getElementById('animechanSource');
 const refreshQuoteBtn = document.getElementById('refreshAnimechan');
 
+// fetchAnimeQuote:
 async function fetchAnimeQuote() {
-    if (!quoteText) return;
-    
-    quoteText.textContent = 'Ładowanie cytatu...';
-    quoteText.style.opacity = '0.5';
+    try {
+        // NOWY, DZIAŁAJĄCY ENDPOINT
+        const response = await fetch('https://animechan.vercel.app/api/random');
+        const data = await response.json();
+        quoteText.textContent = `"${data.quote}" — ${data.character} (${data.anime})`;
+        quoteSource.innerHTML = '✅ AnimeChan API ONLINE';
+    } catch (error) {
+        quoteText.textContent = '❌ Błąd API - spróbuj ponownie';
+        quoteSource.innerHTML = '⚠️ API niedostępne';
+    }
+}
     
     try {
         const controller = new AbortController();
