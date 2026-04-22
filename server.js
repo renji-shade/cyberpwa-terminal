@@ -53,9 +53,13 @@ function serveStaticFile(res, filepath, contentType) {
 async function proxyFetch(targetUrl, res) {
     try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 8000);
+        // Zwiększ timeout dla Jikan API (czasami wolniejsze)
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
         
-        const response = await fetch(targetUrl, { signal: controller.signal });
+        const response = await fetch(targetUrl, { 
+            signal: controller.signal,
+            headers: { 'User-Agent': 'CyberPWA/1.0' } // Dodaj User-Agent
+        });
         clearTimeout(timeoutId);
         
         if (!response.ok) {
