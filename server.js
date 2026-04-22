@@ -2,6 +2,7 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 const path = require('path');
+const fetch = require('node-fetch');
 
 // In-memory user database
 let users = [];
