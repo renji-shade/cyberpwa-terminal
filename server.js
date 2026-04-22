@@ -93,9 +93,9 @@ async function handleRequest(req, res) {
     }
     
     // PROXY ENDPOINTS - bypass CORS for anime APIs
-    // Proxy for Anime Quotes
+    // Proxy for Anime Quotes - NOWY ENDPOINT
     if (pathname === '/api/proxy/quote' && method === 'GET') {
-        await proxyFetch('https://animechan.xyz/api/random', res);
+        await proxyFetch('https://animechan.vercel.app/api/random', res);
         return;
     }
     
